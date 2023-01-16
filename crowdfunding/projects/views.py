@@ -37,6 +37,17 @@ class ProjectDetail(APIView):
     serializer = ProjectDetailSerializer(project)
     return Response(serializer.data)
 
+  def put(self, request, pk):
+    project = self.get_object(pk)
+    data = request.data
+    serializer = ProjectDetail(
+      instance=project,
+      data=data,
+      partial=True
+    )
+    if serializer.is_valid():
+      serializer.save()
+
 class PledgeList(APIView):
   def get(self, request):
     pledges = Pledge.objects.all()
