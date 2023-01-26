@@ -1,6 +1,12 @@
+# virtual envs
 .venv/*
 .env
+# Python temp files
 __pycache__/
-*.sqlite3
+# settings files
 *.vscode
 .github
+.DS_Store
+# project stored data
+*.sqlite3
+staticfiles

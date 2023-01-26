@@ -9,6 +9,7 @@ Built with Django Rest Framework
 | GET    | /projects/     |
 | POST   | /projects/     |
 | GET    | /projects/{id} |
+| PUT    | /projects/{id} |
 | GET    | /pledges/      |
 | POST   | /pledges/      |
 | GET    | /pledges/{id}  |
