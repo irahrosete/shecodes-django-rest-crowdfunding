@@ -12,4 +12,7 @@ Built with Django Rest Framework
 | PUT    | /projects/{id} |
 | GET    | /pledges/      |
 | POST   | /pledges/      |
-| GET    | /pledges/{id}  |
+
+### Deployment
+
+[Steps](https://github.com/Hauteclere/SheCodesDRF2023Supplementary/blob/main/deployment/deployment.md)
