@@ -1,6 +1,6 @@
 # build_files.sh
 pip install --upgrade pip
-python3.9 -m venv .venv
+python -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
-python3.9 crowdfunding/manage.py collectstatic
+python /crowdfunding/manage.py collectstatic --noinput
