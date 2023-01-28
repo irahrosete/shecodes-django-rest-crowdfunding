@@ -9,7 +9,6 @@ class PledgeSerializer(serializers.Serializer):
   supporter_id = serializers.ReadOnlyField(source='supporter.id')
   project_id = serializers.IntegerField()
 
-
   def create(self, validated_data):
     return Pledge.objects.create(**validated_data)
 
@@ -37,5 +36,15 @@ class ProjectDetailSerializer(ProjectSerializer):
     instance.is_open = validated_data.get('is_open', instance.is_open)
     instance.date_created = validated_data.get('date_created', instance.date_created)
     instance.owner = validated_data.get('owner', instance.owner)
+    instance.save()
+    return instance
+
+class PledgeDetailSerializer(PledgeSerializer):
+
+  def update(self, instance, validated_data):
+    instance.amount = validated_data.get('amount', instance.amount)
+    instance.comment = validated_data.get('comment', instance.comment)
+    instance. anonymous = validated_data.get('anonymous', instance.anonymous)
+    instance.project_id = validated_data.get('project_id', instance.project_id)
     instance.save()
     return instance
