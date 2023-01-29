@@ -22,27 +22,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get(
+   'DJANGO_SECRET_KEY',
+   config('SECRET_KEY')
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get(
+   'DJANGO_DEBUG',
+   'False'
+) != 'False'
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
-
+ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app']
 
 # Application definition
 
 INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
+    'users.apps.UsersConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -55,7 +63,9 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,7 +101,8 @@ WSGI_APPLICATION = 'crowdfunding.wsgi.application'
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
+    #     # 'NAME': BASE_DIR / 'db.sqlite3',
+    #     'NAME': os.environ.get('DATABASE_DIR', BASE_DIR / 'db.sqlite3'),
     # }
 }
 
@@ -143,7 +154,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
