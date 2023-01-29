@@ -9,4 +9,4 @@ __pycache__/
 .DS_Store
 # project stored data
 *.sqlite3
-staticfiles
+staticfiles/
