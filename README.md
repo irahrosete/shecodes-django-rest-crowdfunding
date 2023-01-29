@@ -37,4 +37,6 @@ Built with Django Rest Framework
 
 [Using fly.io](https://github.com/Hauteclere/SheCodesDRF2023Supplementary/blob/main/deployment/deployment.md)
 
+[Using fly.io alt](https://github.com/SheCodesAus/she-codes-crowdfunding-api-project-bendog-1/tree/deployment)
+
 [Using vercel](https://www.devmaesters.com/blog/15)
