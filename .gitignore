@@ -1,5 +1,5 @@
 # virtual envs
-.venv/*
+.venv/
 .env
 # Python temp files
 __pycache__/

@@ -33,9 +33,9 @@ DEBUG = os.environ.get(
    'False'
 ) != 'False'
 
-ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
 
 # Application definition
 
@@ -99,24 +99,11 @@ WSGI_APPLICATION = 'crowdfunding.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     # 'NAME': BASE_DIR / 'db.sqlite3',
-    #     'NAME': os.environ.get('DATABASE_DIR', BASE_DIR / 'db.sqlite3'),
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.environ.get('DATABASE_DIR', BASE_DIR / 'db.sqlite3'),
+    }
 }
-
-# DATABASES = {
-#    "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": config('POSTGRES_NAME'),
-#         "USER": config('POSTGRES_USER'),
-#         "PASSWORD": config('POSTGRES_PASSWORD'),
-#         "HOST": "db",
-#         "PORT": 5432,
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -153,12 +140,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
